@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useContext, useState } from "react";
 import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -8,6 +8,7 @@ import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Slide from "@mui/material/Slide";
 import {
   alpha,
+  Avatar,
   Box,
   Button,
   Container,
@@ -18,12 +19,16 @@ import {
   Menu,
   MenuItem,
   styled,
+  useTheme,
 } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import AdbIcon from "@mui/icons-material/Adb";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "gatsby";
 import SearchIcon from "@mui/icons-material/Search";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
+import { ColorModeContext } from "../top-layout";
 
 const pages = [
   {
@@ -36,6 +41,8 @@ const pages = [
   },
 ];
 // const settings = ["Profile", "Account", "Dashboard", "Logout"];
+
+const TITLE_SIZE = 25;
 
 function ScrollTop(props) {
   const { children, window } = props;
@@ -150,6 +157,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function HideAppBar(props) {
+  const theme = useTheme();
+  const colorMode = useContext(ColorModeContext);
   const [anchorElNav, setAnchorElNav] = useState(null);
   // const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -174,23 +183,30 @@ export default function HideAppBar(props) {
         <AppBar>
           <Container maxWidth='xl'>
             <Toolbar disableGutters>
-              <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+              <Avatar
+                variant='rounded'
+                alt='logo'
+                src='/images/logo-k-color.png'
+                sx={{
+                  display: { xs: "none", md: "flex" },
+                  mr: 1,
+                }}
+              />
               <Typography
-                component='div'
+                className='font-main'
+                component={Link}
+                to='/'
                 sx={{
                   pr: 2,
                   fontWeight: 700,
                   textTransform: "uppercase",
-                  fontSize: (theme) => theme.typography.pxToRem(20),
+                  fontSize: (theme) => theme.typography.pxToRem(TITLE_SIZE),
                   display: { xs: "none", md: "flex" },
-                  // fontFamily: "monospace",
                   letterSpacing: ".3rem",
-                  "& a": {
-                    color: "inherit",
-                    textDecoration: "none",
-                  },
+                  color: "inherit",
+                  textDecoration: "none",
                 }}>
-                <Link to='/'>devkimson</Link>
+                devkimson
               </Typography>
 
               <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -223,54 +239,61 @@ export default function HideAppBar(props) {
                   {pages.map((page) => (
                     <MenuItem key={page.name} onClick={handleCloseNavMenu}>
                       <Typography
-                        textAlign='center'
+                        key={page.name}
+                        onClick={handleCloseNavMenu}
+                        component={Link}
+                        to={page.path}
                         sx={{
-                          "& a": {
-                            color: "inherit",
-                            textDecoration: "none",
-                          },
+                          display: "block",
+                          color: (theme) => theme.palette.text.primary,
+                          textDecoration: "none",
                         }}>
-                        <Link to={page.path}>{page.name}</Link>
+                        {page.name}
                       </Typography>
                     </MenuItem>
                   ))}
                 </Menu>
               </Box>
-              <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+              {/* small size */}
+              <Avatar
+                variant='rounded'
+                alt='logo'
+                src='/images/logo-k-color.png'
+                sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+              />
               <Typography
-                component='div'
+                className='font-main'
+                component={Link}
+                to='/'
                 sx={{
                   pr: 2,
                   fontWeight: 700,
                   textTransform: "uppercase",
-                  fontSize: (theme) => theme.typography.pxToRem(20),
+                  fontSize: (theme) => theme.typography.pxToRem(TITLE_SIZE),
                   display: { xs: "flex", md: "none" },
                   flexGrow: 1,
-                  // fontFamily: "monospace",
                   letterSpacing: ".3rem",
-                  "& a": {
-                    color: "inherit",
-                    textDecoration: "none",
-                  },
+                  color: "inherit",
+                  textDecoration: "none",
                 }}>
-                <Link to='/'>devkimson</Link>
+                devkimson
               </Typography>
 
+              {/* big size */}
               <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
                 {pages.map((page) => (
                   <Button
                     key={page.name}
                     onClick={handleCloseNavMenu}
+                    component={Link}
+                    to={page.path}
                     sx={{
                       my: 2,
-                      color: "white",
                       display: "block",
-                      "& a": {
-                        color: "inherit",
-                        textDecoration: "none",
-                      },
+                      color: (theme) => theme.palette.text.secondary,
+                      textDecoration: "none",
                     }}>
-                    <Link to={page.path}>{page.name}</Link>
+                    {page.name}
                   </Button>
                 ))}
               </Box>
@@ -284,6 +307,18 @@ export default function HideAppBar(props) {
                 />
               </Search>
               {/* save */}
+              <Box sx={{ flexGrow: 0 }}>
+                <IconButton
+                  sx={{ ml: 1 }}
+                  onClick={colorMode.toggleColorMode}
+                  color='inherit'>
+                  {theme.palette.mode === "dark" ? (
+                    <Brightness7Icon />
+                  ) : (
+                    <Brightness4Icon />
+                  )}
+                </IconButton>
+              </Box>
               {/* <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title='Open settings'>
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

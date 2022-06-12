@@ -216,7 +216,7 @@ export const Markdown = (function () {
           convertedHTML[id] = line
             .trim()
             .replace(/[\s\n]*(#*)(.+)/gm, (a, $1, $2) => {
-              let [attrs, classes] = this.addClass(line);
+              let classes = this.addClass(line)[1];
               let count = $1.split("").length;
               return `<h${count}${
                 options.h.custom
@@ -235,7 +235,7 @@ export const Markdown = (function () {
 
     this.italicBold = function () {
       convertedHTML = convertedHTML.map((x) => {
-        let [attrs, classes] = this.addClass(x);
+        let classes = this.addClass(x)[1];
         if (/(\*+)([\s\S]+?)\*+/g && !x.match(/<\/?(pre|code)>/g))
           return x
             .replace(/(\*{1,3})([\s\S]+?)\*{1,3}/g, (a, $1, $2) => {
@@ -597,12 +597,20 @@ export const Markdown = (function () {
             (a, dotted, lang, content) => {
               let [attrs, classes] = this.addClass(content);
               let ta = document.createElement("textarea");
-              ta.value = content.replace(/(<|>)/g, (a, $1) => {
+              ta.value = content.replace(/([<>#().])/g, (a, $1) => {
                 switch ($1) {
                   case "<":
                     return "&lt;";
                   case ">":
                     return "&gt;";
+                  case "#":
+                    return "&#35;";
+                  case "(":
+                    return "&#40;";
+                  case ")":
+                    return "&#41;";
+                  case ".":
+                    return "&#46;";
                   default:
                     return $1;
                 }

@@ -1,30 +1,76 @@
 import { graphql } from "gatsby";
 import * as React from "react";
+import Grid from "@mui/material/Grid";
+import { Paper, styled } from "@mui/material";
+import BlogCard from "../components/common/BlogCard";
+
+const PaperBlock = styled(Paper)(({ theme }) => ({
+  borderRadius: 15,
+  overflow: "hidden",
+}));
 
 // markup
-const IndexPage = ({data}) => {
-  return <>
-    <p>I'm making this by following the Gatsby Tutorial.</p>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam fugiat dicta facilis in. Distinctio deleniti quos et dolor sapiente officiis quasi eum debitis magni, sit laborum molestiae nam dicta quas odit facilis voluptatibus? Eius deleniti impedit obcaecati delectus sint ipsam odio ullam ipsa reprehenderit eum, molestiae, laborum, non eaque? Debitis, quisquam fuga a est totam sit nesciunt dolor delectus consectetur rerum! Vitae, omnis reprehenderit quidem consectetur impedit velit esse cum sequi, alias eius odit quam voluptatem nihil eum maxime architecto excepturi unde nam sunt. Incidunt atque aut nihil ipsum voluptas iure illo ad qui, maiores eveniet recusandae minus quia magni cumque, perspiciatis voluptate natus vitae ex ab odit voluptatem, facilis provident. Repellat eum officiis porro obcaecati harum, saepe officia cumque architecto blanditiis facere, earum fugiat. Sunt culpa tempora harum aspernatur laborum ipsa, sequi, dolorem itaque temporibus facilis quos reiciendis, saepe molestiae dolorum dolores repellat. Tempore similique, tenetur est odit molestiae animi libero maxime eligendi possimus fugiat nobis, nam odio iusto quaerat eaque nemo. Voluptates, ut accusamus! Ducimus inventore quia quos porro nisi, molestias, ut quo esse nulla non ipsum vero minima facilis sequi quas? Quis similique autem alias asperiores dolore ab repellat laudantium! Soluta ullam eius fuga, enim a libero!
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam fugiat dicta facilis in. Distinctio deleniti quos et dolor sapiente officiis quasi eum debitis magni, sit laborum molestiae nam dicta quas odit facilis voluptatibus? Eius deleniti impedit obcaecati delectus sint ipsam odio ullam ipsa reprehenderit eum, molestiae, laborum, non eaque? Debitis, quisquam fuga a est totam sit nesciunt dolor delectus consectetur rerum! Vitae, omnis reprehenderit quidem consectetur impedit velit esse cum sequi, alias eius odit quam voluptatem nihil eum maxime architecto excepturi unde nam sunt. Incidunt atque aut nihil ipsum voluptas iure illo ad qui, maiores eveniet recusandae minus quia magni cumque, perspiciatis voluptate natus vitae ex ab odit voluptatem, facilis provident. Repellat eum officiis porro obcaecati harum, saepe officia cumque architecto blanditiis facere, earum fugiat. Sunt culpa tempora harum aspernatur laborum ipsa, sequi, dolorem itaque temporibus facilis quos reiciendis, saepe molestiae dolorum dolores repellat. Tempore similique, tenetur est odit molestiae animi libero maxime eligendi possimus fugiat nobis, nam odio iusto quaerat eaque nemo. Voluptates, ut accusamus! Ducimus inventore quia quos porro nisi, molestias, ut quo esse nulla non ipsum vero minima facilis sequi quas? Quis similique autem alias asperiores dolore ab repellat laudantium! Soluta ullam eius fuga, enim a libero!
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam fugiat dicta facilis in. Distinctio deleniti quos et dolor sapiente officiis quasi eum debitis magni, sit laborum molestiae nam dicta quas odit facilis voluptatibus? Eius deleniti impedit obcaecati delectus sint ipsam odio ullam ipsa reprehenderit eum, molestiae, laborum, non eaque? Debitis, quisquam fuga a est totam sit nesciunt dolor delectus consectetur rerum! Vitae, omnis reprehenderit quidem consectetur impedit velit esse cum sequi, alias eius odit quam voluptatem nihil eum maxime architecto excepturi unde nam sunt. Incidunt atque aut nihil ipsum voluptas iure illo ad qui, maiores eveniet recusandae minus quia magni cumque, perspiciatis voluptate natus vitae ex ab odit voluptatem, facilis provident. Repellat eum officiis porro obcaecati harum, saepe officia cumque architecto blanditiis facere, earum fugiat. Sunt culpa tempora harum aspernatur laborum ipsa, sequi, dolorem itaque temporibus facilis quos reiciendis, saepe molestiae dolorum dolores repellat. Tempore similique, tenetur est odit molestiae animi libero maxime eligendi possimus fugiat nobis, nam odio iusto quaerat eaque nemo. Voluptates, ut accusamus! Ducimus inventore quia quos porro nisi, molestias, ut quo esse nulla non ipsum vero minima facilis sequi quas? Quis similique autem alias asperiores dolore ab repellat laudantium! Soluta ullam eius fuga, enim a libero!
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam fugiat dicta facilis in. Distinctio deleniti quos et dolor sapiente officiis quasi eum debitis magni, sit laborum molestiae nam dicta quas odit facilis voluptatibus? Eius deleniti impedit obcaecati delectus sint ipsam odio ullam ipsa reprehenderit eum, molestiae, laborum, non eaque? Debitis, quisquam fuga a est totam sit nesciunt dolor delectus consectetur rerum! Vitae, omnis reprehenderit quidem consectetur impedit velit esse cum sequi, alias eius odit quam voluptatem nihil eum maxime architecto excepturi unde nam sunt. Incidunt atque aut nihil ipsum voluptas iure illo ad qui, maiores eveniet recusandae minus quia magni cumque, perspiciatis voluptate natus vitae ex ab odit voluptatem, facilis provident. Repellat eum officiis porro obcaecati harum, saepe officia cumque architecto blanditiis facere, earum fugiat. Sunt culpa tempora harum aspernatur laborum ipsa, sequi, dolorem itaque temporibus facilis quos reiciendis, saepe molestiae dolorum dolores repellat. Tempore similique, tenetur est odit molestiae animi libero maxime eligendi possimus fugiat nobis, nam odio iusto quaerat eaque nemo. Voluptates, ut accusamus! Ducimus inventore quia quos porro nisi, molestias, ut quo esse nulla non ipsum vero minima facilis sequi quas? Quis similique autem alias asperiores dolore ab repellat laudantium! Soluta ullam eius fuga, enim a libero!
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam fugiat dicta facilis in. Distinctio deleniti quos et dolor sapiente officiis quasi eum debitis magni, sit laborum molestiae nam dicta quas odit facilis voluptatibus? Eius deleniti impedit obcaecati delectus sint ipsam odio ullam ipsa reprehenderit eum, molestiae, laborum, non eaque? Debitis, quisquam fuga a est totam sit nesciunt dolor delectus consectetur rerum! Vitae, omnis reprehenderit quidem consectetur impedit velit esse cum sequi, alias eius odit quam voluptatem nihil eum maxime architecto excepturi unde nam sunt. Incidunt atque aut nihil ipsum voluptas iure illo ad qui, maiores eveniet recusandae minus quia magni cumque, perspiciatis voluptate natus vitae ex ab odit voluptatem, facilis provident. Repellat eum officiis porro obcaecati harum, saepe officia cumque architecto blanditiis facere, earum fugiat. Sunt culpa tempora harum aspernatur laborum ipsa, sequi, dolorem itaque temporibus facilis quos reiciendis, saepe molestiae dolorum dolores repellat. Tempore similique, tenetur est odit molestiae animi libero maxime eligendi possimus fugiat nobis, nam odio iusto quaerat eaque nemo. Voluptates, ut accusamus! Ducimus inventore quia quos porro nisi, molestias, ut quo esse nulla non ipsum vero minima facilis sequi quas? Quis similique autem alias asperiores dolore ab repellat laudantium! Soluta ullam eius fuga, enim a libero!
-    </p>
-  </>;
+const IndexPage = ({ data }) => {
+  const {
+    allMarkdownRemark: { edges },
+  } = data;
+  const [
+    {
+      node: { frontmatter: firstPost },
+    },
+    ...otherPost
+  ] = edges;
+
+  return (
+    <Grid container spacing={10}>
+      {/* main */}
+      <Grid item xs={12}>
+        <PaperBlock
+          elevation={2}
+          sx={{
+            display: {
+              xs: "block",
+              md: "flex",
+            },
+          }}>
+          <BlogCard data={firstPost} height={"calc(20vw + 100px)"} />
+        </PaperBlock>
+      </Grid>
+      {/* card */}
+      {otherPost.map(({ node: { frontmatter: post } }) => (
+        <Grid key={post.title} item xs={12} md={6}>
+          <PaperBlock elevation={2}>
+            <BlogCard data={post} height={300} />
+          </PaperBlock>
+        </Grid>
+      ))}
+    </Grid>
+  );
 };
 
-// export const query = graphql`
-  
-// `
+export const query = graphql`
+  {
+    allMarkdownRemark(
+      sort: { fields: frontmatter___date, order: DESC }
+      limit: 5
+      filter: { frontmatter: { published: { eq: true } } }
+    ) {
+      edges {
+        node {
+          frontmatter {
+            slug
+            title
+            description
+            author
+            date(fromNow: false, formatString: "YYYY-MM-DD HH:mm")
+            categories
+            tags
+            image
+          }
+        }
+      }
+    }
+  }
+`;
 
 export default IndexPage;
